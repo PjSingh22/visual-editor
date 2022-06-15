@@ -3,6 +3,7 @@ import { useDrop } from 'react-dnd/dist/hooks';
 
 import Picture from './Picture';
 import '../App.css';
+import Board from './Board';
 
 const PictureList = [
   {
@@ -20,28 +21,32 @@ const PictureList = [
 ]
 
 function DragDrop(props) {
-  const [board, setBoard] = useState([])
+  // const [board, setBoard] = useState([])
 
-  const [{ isOver }, drop] = useDrop(() => ({
-    accept: 'image',
-    drop: (item) => addImageToBoard(item.id),
-    collect: monitor => ({
-      isOver: !!monitor.isOver(),
-    })
-  }))
+  // const [{ isOver }, drop] = useDrop(() => ({
+  //   accept: 'image',
+  //   drop: (item) => addImageToBoard(item.id),
+  //   collect: monitor => ({
+  //     isOver: !!monitor.isOver(),
+  //   })
+  // }))
 
-  const addImageToBoard = (id) => {
-    const filteredPL = PictureList.filter(picture => id === picture.id)
-    setBoard((board) => [...board, filteredPL[0]]);
-  }
+  // const addImageToBoard = (id) => {
+  //   const filteredPL = PictureList.filter(picture => id === picture.id)
+  //   setBoard((board) => [...board, filteredPL[0]]);
+  // }
   return (
     <>
       <div className='Pictures'>{PictureList.map(picture => {
         return <Picture id={picture.id} url={picture.url} />
-      })}</div>
-      <div className='Board' ref={drop}>{board.map((picture) => {
-        return <Picture id={picture.id} url={picture.url} />
-      })}</div>
+      })}
+      </div>
+      <div className='board-container'>
+        <Board PictureList={PictureList} />
+        <Board PictureList={PictureList} />
+        <Board PictureList={PictureList} />
+        <Board PictureList={PictureList} />
+      </div>
     </>
   );
 }
