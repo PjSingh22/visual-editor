@@ -18,36 +18,26 @@ const PictureList = [
     id: 3,
     url: require("../assets/forest3.jpg")
   },
+  {
+    id: 4,
+    url: require("../assets/forest4.jpg")
+  }
 ]
 
 function DragDrop(props) {
-  // const [board, setBoard] = useState([])
-
-  // const [{ isOver }, drop] = useDrop(() => ({
-  //   accept: 'image',
-  //   drop: (item) => addImageToBoard(item.id),
-  //   collect: monitor => ({
-  //     isOver: !!monitor.isOver(),
-  //   })
-  // }))
-
-  // const addImageToBoard = (id) => {
-  //   const filteredPL = PictureList.filter(picture => id === picture.id)
-  //   setBoard((board) => [...board, filteredPL[0]]);
-  // }
   return (
-    <>
+    <div className='dragDrop'>
       <div className='Pictures'>{PictureList.map(picture => {
         return <Picture id={picture.id} url={picture.url} />
       })}
       </div>
       <div className='board-container'>
-        <Board PictureList={PictureList} />
-        <Board PictureList={PictureList} />
-        <Board PictureList={PictureList} />
-        <Board PictureList={PictureList} />
+        <Board boardId={1} PictureList={PictureList} clearBoard={props.clearBoard}/>
+        <Board boardId={2} PictureList={PictureList} clearBoard={props.clearBoard} />
+        <Board boardId={3} PictureList={PictureList} clearBoard={props.clearBoard} />
+        <Board boardId={4} PictureList={PictureList} clearBoard={props.clearBoard} />
       </div>
-    </>
+    </div>
   );
 }
 
